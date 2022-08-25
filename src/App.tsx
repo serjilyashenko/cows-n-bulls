@@ -1,5 +1,5 @@
-import reactLogo from './assets/react.svg'
-import './App.css'
+import reactLogo from "./assets/react.svg";
+import "./App.css";
 
 export default function App() {
   return (
@@ -14,5 +14,5 @@ export default function App() {
       </div>
       <h1>Cows & Bulls</h1>
     </main>
-  )
+  );
 }
