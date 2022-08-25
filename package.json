@@ -16,7 +16,9 @@
   },
   "lint-staged": {
     "**/*.*": [
-      "npm run prettier:check",
+      "npm run prettier:check"
+    ],
+    "**/*.+(js|ts|jsx|tsx)": [
       "npm run eslint:check"
     ]
   },

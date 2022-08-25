@@ -5,6 +5,9 @@ export default function App() {
   return (
     <main className="App">
       <div>
+        <header>
+          <h1>🐮 Cows & Bulls</h1>
+        </header>
         <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
           <img src="/vite.svg" className="logo" alt="Vite logo" />
         </a>
@@ -12,7 +15,6 @@ export default function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Cows & Bulls</h1>
     </main>
   );
 }

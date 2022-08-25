@@ -1,3 +1,3 @@
-# cows-n-bulls
+# 🐮 Cows&Bulls
 
 Ancient game
