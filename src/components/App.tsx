@@ -1,15 +1,14 @@
-import { ChangeEvent, useState } from "react";
-import reactLogo from "./assets/react.svg";
+import { ReactElement } from "react";
+import { Guess } from "./Guess";
+import reactLogo from "../assets/react.svg";
 import appStyles from "./App.module.scss";
 import "./App.css";
 
-export default function App() {
-  const [guessValue, setGuessValue] = useState<string>("000");
+// const riddleValue = Math.round(Math.random() * 1000).toString();
 
-  function onGuessChange(event: ChangeEvent<HTMLInputElement>) {
-    const guessInput = event.target;
-
-    setGuessValue(guessInput.value);
+export function App(): ReactElement {
+  function onGuess(guess: string) {
+    console.log("guess: ", guess);
   }
 
   return (
@@ -21,15 +20,7 @@ export default function App() {
           </header>
 
           <main>
-            <form className={appStyles.guess_form}>
-              <input
-                autoFocus
-                className={appStyles.guess}
-                value={guessValue}
-                onChange={onGuessChange}
-              />
-              <button>🔎</button>
-            </form>
+            <Guess onGuess={onGuess} />
           </main>
         </div>
       </div>
