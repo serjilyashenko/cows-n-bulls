@@ -13,7 +13,7 @@ export function calculateHint(riddle: string, guess: string): THint {
       bulls++;
       continue;
     }
-    if (riddleArray.includes(guessArray[index])) {
+    if (riddleArray.includes(guessArray[index] || "")) {
       cows++;
     }
   }

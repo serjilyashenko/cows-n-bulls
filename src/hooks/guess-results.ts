@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { calculateHint } from "../utils/hint";
-import { TGuessResult } from "./guess-results-types";
+import { TGuessResult, TUseGuessResults } from "./guess-results-types";
 
-export function useGuessResults(riddle: string) {
+export function useGuessResults(riddle: string): TUseGuessResults {
   const [guessResults, setGuessResults] = useState<Array<TGuessResult>>([]);
 
   function guess(guessValue: string): void {
@@ -12,5 +12,9 @@ export function useGuessResults(riddle: string) {
     ]);
   }
 
-  return { guessResults, guess };
+  function reset(): void {
+    setGuessResults([]);
+  }
+
+  return { guessResults, guess, reset };
 }

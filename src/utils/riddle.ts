@@ -6,7 +6,7 @@ export function generateRiddleValue(size: number): string {
   while (riddleValue.length < size || !options.length) {
     const randomIndex = Math.floor(Math.random() * options.length);
 
-    riddleValue.push(options[randomIndex]);
+    riddleValue.push(options[randomIndex] as number);
     options.splice(randomIndex, 1);
   }
 

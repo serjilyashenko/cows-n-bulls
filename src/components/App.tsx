@@ -1,17 +1,19 @@
 import { ReactElement } from "react";
 import { useGuessResults } from "../hooks/guess-results";
 import reactLogo from "../assets/react.svg";
+import { generateRiddleValue } from "../utils/riddle";
 import { COMPLEXITY } from "../const";
 import { Guess } from "./Guess";
 import { Results } from "./Results";
+import { Win } from "./Win";
 import appStyles from "./App.module.scss";
 import "./App.css";
-import { generateRiddleValue } from "../utils/riddle";
 
 const riddleValue = generateRiddleValue(COMPLEXITY);
 
 export function App(): ReactElement {
-  const { guessResults, guess } = useGuessResults(riddleValue);
+  const { guessResults, guess, reset } = useGuessResults(riddleValue);
+  const isWin = guessResults[guessResults.length - 1]?.guess === riddleValue;
 
   return (
     <div className={appStyles.container}>
@@ -23,7 +25,11 @@ export function App(): ReactElement {
 
           <main>
             <div className={appStyles.guess_form_container}>
-              <Guess onGuess={guess} />
+              {isWin ? (
+                <Win tries={guessResults.length} onReset={reset} />
+              ) : (
+                <Guess onGuess={guess} />
+              )}
             </div>
             <Results results={guessResults} />
           </main>
