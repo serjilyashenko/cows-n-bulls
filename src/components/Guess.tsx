@@ -29,6 +29,7 @@ export function Guess(props: PropsType): ReactElement {
 
     if (isGuessValid) {
       onGuess(guessValue);
+      setGuessValue("");
     }
   }
 

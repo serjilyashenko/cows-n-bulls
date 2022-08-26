@@ -4,25 +4,25 @@ function isDigits(value: string): boolean {
   return !!value.match(/^[0-9]+$/);
 }
 
-export function onFlyGuessValidate(guess: string): boolean {
-  if (guess === "") {
+export function onFlyGuessValidate(guessValue: string): boolean {
+  if (guessValue === "") {
     return true;
   }
-  if (!isDigits(guess)) {
+  if (!isDigits(guessValue)) {
     return false;
   }
-  if (guess.length > COMPLEXITY) {
+  if (guessValue.length > COMPLEXITY) {
     return false;
   }
 
   return true;
 }
 
-export function submitGuessValidate(guess: string): boolean {
-  if (guess.length !== COMPLEXITY) {
+export function submitGuessValidate(guessValue: string): boolean {
+  if (guessValue.length !== COMPLEXITY) {
     return false;
   }
-  if (!onFlyGuessValidate(guess)) {
+  if (!onFlyGuessValidate(guessValue)) {
     return false;
   }
 

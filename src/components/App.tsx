@@ -1,15 +1,15 @@
 import { ReactElement } from "react";
-import { Guess } from "./Guess";
+import { useGuessResults } from "../hooks/guess-results";
 import reactLogo from "../assets/react.svg";
+import { Guess } from "./Guess";
+import { Results } from "./Results";
 import appStyles from "./App.module.scss";
 import "./App.css";
 
-// const riddleValue = Math.round(Math.random() * 1000).toString();
+const riddleValue = Math.round(Math.random() * 1000).toString();
 
 export function App(): ReactElement {
-  function onGuess(guess: string) {
-    console.log("guess: ", guess);
-  }
+  const { guessResults, guess } = useGuessResults(riddleValue);
 
   return (
     <div className={appStyles.container}>
@@ -20,7 +20,10 @@ export function App(): ReactElement {
           </header>
 
           <main>
-            <Guess onGuess={onGuess} />
+            <div className={appStyles.guess_form_container}>
+              <Guess onGuess={guess} />
+            </div>
+            <Results results={guessResults} />
           </main>
         </div>
       </div>
