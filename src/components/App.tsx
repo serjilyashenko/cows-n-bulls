@@ -1,12 +1,14 @@
 import { ReactElement } from "react";
 import { useGuessResults } from "../hooks/guess-results";
 import reactLogo from "../assets/react.svg";
+import { COMPLEXITY } from "../const";
 import { Guess } from "./Guess";
 import { Results } from "./Results";
 import appStyles from "./App.module.scss";
 import "./App.css";
+import { generateRiddleValue } from "../utils/riddle";
 
-const riddleValue = Math.round(Math.random() * 1000).toString();
+const riddleValue = generateRiddleValue(COMPLEXITY);
 
 export function App(): ReactElement {
   const { guessResults, guess } = useGuessResults(riddleValue);
