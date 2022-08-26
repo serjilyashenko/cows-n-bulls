@@ -1,5 +1,3 @@
-import { COMPLEXITY } from "../const";
-
 function isDigits(value: string): boolean {
   return !!value.match(/^[0-9]+$/);
 }
@@ -10,14 +8,17 @@ function isUniq(array: Array<unknown>): boolean {
   );
 }
 
-export function onFlyGuessValidate(guessValue: string): boolean {
+export function onFlyGuessValidate(
+  complexity: number,
+  guessValue: string
+): boolean {
   if (guessValue === "") {
     return true;
   }
   if (!isDigits(guessValue)) {
     return false;
   }
-  if (guessValue.length > COMPLEXITY) {
+  if (guessValue.length > complexity) {
     return false;
   }
   if (!isUniq(guessValue.split(""))) {
@@ -27,11 +28,14 @@ export function onFlyGuessValidate(guessValue: string): boolean {
   return true;
 }
 
-export function submitGuessValidate(guessValue: string): boolean {
-  if (guessValue.length !== COMPLEXITY) {
+export function submitGuessValidate(
+  complexity: number,
+  guessValue: string
+): boolean {
+  if (guessValue.length !== complexity) {
     return false;
   }
-  if (!onFlyGuessValidate(guessValue)) {
+  if (!onFlyGuessValidate(complexity, guessValue)) {
     return false;
   }
 

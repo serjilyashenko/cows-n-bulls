@@ -11,6 +11,17 @@
   grid-row-end: 3;
 }
 
+.title {
+  position: relative;
+  display: inline-block;
+}
+
+.complexity {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 10px);
+}
+
 .content {
   align-items: center;
   display: grid;

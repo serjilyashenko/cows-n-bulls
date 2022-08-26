@@ -1,9 +1,8 @@
-const options = "0123456789".split("").map(Number);
-
 export function generateRiddleValue(size: number): string {
+  const options = "0123456789".split("").map(Number);
   const riddleValue: Array<number> = [];
 
-  while (riddleValue.length < size || !options.length) {
+  while (riddleValue.length < size) {
     const randomIndex = Math.floor(Math.random() * options.length);
 
     riddleValue.push(options[randomIndex] as number);

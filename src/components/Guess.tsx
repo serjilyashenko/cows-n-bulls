@@ -3,23 +3,27 @@ import {
   onFlyGuessValidate,
   submitGuessValidate,
 } from "../utils/validate-guess";
-import { GUESS_PLACEHOLDER } from "../const";
 import guessStyles from "./Guess.module.scss";
 
 type PropsType = {
+  complexity: number;
   onGuess: (value: string) => void;
 };
 
 export function Guess(props: PropsType): ReactElement {
-  const { onGuess } = props;
+  const { complexity, onGuess } = props;
   const [guessValue, setGuessValue] = useState<string>("");
 
-  const isGuessValid = submitGuessValidate(guessValue);
+  const isGuessValid = submitGuessValidate(complexity, guessValue);
+  const guessPlaceholder: string = Array.from(
+    { length: complexity },
+    () => "*"
+  ).join("");
 
   function onGuessChange(event: ChangeEvent<HTMLInputElement>): void {
     const guess = event.target.value;
 
-    if (onFlyGuessValidate(guess)) {
+    if (onFlyGuessValidate(complexity, guess)) {
       setGuessValue(guess);
     }
   }
@@ -40,7 +44,8 @@ export function Guess(props: PropsType): ReactElement {
         className={guessStyles.guess}
         value={guessValue}
         onChange={onGuessChange}
-        placeholder={GUESS_PLACEHOLDER}
+        placeholder={guessPlaceholder}
+        style={{ width: `calc(42px * ${complexity})` }}
       />
       <button type="submit" disabled={!isGuessValid}>
         🔎
