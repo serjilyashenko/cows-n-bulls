@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, ReactElement, useState } from "react";
+import { ChangeEvent, FormEvent, ReactElement, useRef, useState } from "react";
 import {
   onFlyGuessValidate,
   submitGuessValidate,
@@ -12,6 +12,7 @@ type PropsType = {
 
 export function Guess(props: PropsType): ReactElement {
   const { complexity, onGuess } = props;
+  const guessRef = useRef<HTMLInputElement>(null);
   const [guessValue, setGuessValue] = useState<string>("");
 
   const isGuessValid = submitGuessValidate(complexity, guessValue);
@@ -35,6 +36,9 @@ export function Guess(props: PropsType): ReactElement {
       onGuess(guessValue);
       setGuessValue("");
     }
+    if (guessRef.current) {
+      guessRef.current.focus();
+    }
   }
 
   return (
@@ -46,6 +50,7 @@ export function Guess(props: PropsType): ReactElement {
         onChange={onGuessChange}
         pattern="[0-9]*"
         placeholder={guessPlaceholder}
+        ref={guessRef}
         style={{ width: `calc(42px * ${complexity})` }}
       />
       <button type="submit" disabled={!isGuessValid}>
