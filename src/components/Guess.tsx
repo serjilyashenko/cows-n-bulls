@@ -44,6 +44,7 @@ export function Guess(props: PropsType): ReactElement {
         className={guessStyles.guess}
         value={guessValue}
         onChange={onGuessChange}
+        pattern="[0-9]*"
         placeholder={guessPlaceholder}
         style={{ width: `calc(42px * ${complexity})` }}
       />
