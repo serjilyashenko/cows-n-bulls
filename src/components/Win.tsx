@@ -3,11 +3,11 @@ import winStyles from "./Win.module.scss";
 
 type TProps = {
   tries: number;
-  onReset: () => void;
+  onNext: () => void;
 };
 
 export function Win(props: TProps): ReactElement {
-  const { tries, onReset } = props;
+  const { tries, onNext } = props;
 
   return (
     <>
@@ -20,7 +20,7 @@ export function Win(props: TProps): ReactElement {
           className={winStyles.happy_bear}
           alt="Happy Bear"
         />
-        <button onClick={onReset}>Again</button>
+        <button onClick={onNext}>Next</button>
       </div>
     </>
   );

@@ -6,7 +6,7 @@ export function useGuessResults(riddle: string): TUseGuessResults {
   const [guessResults, setGuessResults] = useState<Array<TGuessResult>>([]);
 
   useEffect(() => {
-    reset();
+    setGuessResults([]);
   }, [riddle]);
 
   function guess(guessValue: string): void {
@@ -16,9 +16,5 @@ export function useGuessResults(riddle: string): TUseGuessResults {
     ]);
   }
 
-  function reset(): void {
-    setGuessResults([]);
-  }
-
-  return { guessResults, guess, reset };
+  return { guessResults, guess };
 }

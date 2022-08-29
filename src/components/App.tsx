@@ -8,23 +8,27 @@ import { Win } from "./Win";
 import appStyles from "./App.module.scss";
 import "./App.css";
 
+const maxComplexity = 10;
+const subLevelCount = 3;
+
 export function App(): ReactElement {
-  const [complexity, setComplexity] = useState<number>(2);
-  const [resetTrigger, setResetTrigger] = useState<number>(0);
+  const [level, setLevel] = useState<number>(1);
+  const [subLevel, setSubLevel] = useState<number>(1);
+  const complexity = Math.min(maxComplexity, level + 1);
   const riddleValue = useMemo<string>(
     () => generateRiddleValue(complexity),
-    [complexity, resetTrigger]
+    [complexity, subLevel]
   );
-  const {
-    guessResults,
-    guess,
-    reset: resetResults,
-  } = useGuessResults(riddleValue);
+  const { guessResults, guess } = useGuessResults(riddleValue);
   const isWin = guessResults[guessResults.length - 1]?.guess === riddleValue;
 
-  function onReset() {
-    setResetTrigger(Date.now());
-    resetResults();
+  function onNext() {
+    if (subLevel >= subLevelCount) {
+      setSubLevel(1);
+      setLevel((prev) => prev + 1);
+    } else {
+      setSubLevel((prev) => prev + 1);
+    }
   }
 
   return (
@@ -32,29 +36,16 @@ export function App(): ReactElement {
       <div className={appStyles.content}>
         <div>
           <header>
-            <h1 className={appStyles.title}>
-              🐮 Cows & Bulls
-              <select
-                className={appStyles.complexity}
-                onChange={(event) => setComplexity(Number(event.target.value))}
-                value={complexity}
-              >
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-              </select>
-            </h1>
+            <h1 className={appStyles.title}>🐮 Cows & Bulls</h1>
+            <h4 className={appStyles.sub_title}>
+              Level: {level}.{subLevel}
+            </h4>
           </header>
 
           <main>
             <div className={appStyles.guess_form_container}>
               {isWin ? (
-                <Win tries={guessResults.length} onReset={onReset} />
+                <Win tries={guessResults.length} onNext={onNext} />
               ) : (
                 <Guess complexity={complexity} onGuess={guess} />
               )}

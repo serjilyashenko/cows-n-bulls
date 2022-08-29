@@ -14,12 +14,11 @@
 .title {
   position: relative;
   display: inline-block;
+  margin-bottom: 0;
 }
 
-.complexity {
-  position: absolute;
-  top: 0;
-  left: calc(100% + 10px);
+.sub_title {
+  margin-top: 0;
 }
 
 .content {
