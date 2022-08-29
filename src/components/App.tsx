@@ -9,7 +9,7 @@ import appStyles from "./App.module.scss";
 import "./App.css";
 
 export function App(): ReactElement {
-  const [complexity, setComplexity] = useState<number>(4);
+  const [complexity, setComplexity] = useState<number>(2);
   const [resetTrigger, setResetTrigger] = useState<number>(0);
   const riddleValue = useMemo<string>(
     () => generateRiddleValue(complexity),
