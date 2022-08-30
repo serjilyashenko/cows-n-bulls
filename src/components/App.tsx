@@ -2,6 +2,7 @@ import { ReactElement, useMemo, useState } from "react";
 import { useGuessResults } from "../hooks/guess-results";
 import reactLogo from "../assets/react.svg";
 import { generateRiddleValue } from "../utils/riddle";
+import { INITIAL_LEVEL, INITIAL_SUB_LEVEL } from "../utils/initial-level";
 import { Guess } from "./Guess";
 import { Results } from "./Results";
 import { Win } from "./Win";
@@ -12,8 +13,8 @@ const maxComplexity = 10;
 const subLevelCount = 3;
 
 export function App(): ReactElement {
-  const [level, setLevel] = useState<number>(1);
-  const [subLevel, setSubLevel] = useState<number>(1);
+  const [level, setLevel] = useState<number>(INITIAL_LEVEL);
+  const [subLevel, setSubLevel] = useState<number>(INITIAL_SUB_LEVEL);
   const complexity = Math.min(maxComplexity, level + 1);
   const riddleValue = useMemo<string>(
     () => generateRiddleValue(complexity),
