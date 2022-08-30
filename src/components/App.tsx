@@ -2,7 +2,12 @@ import { ReactElement, useMemo, useState } from "react";
 import { useGuessResults } from "../hooks/guess-results";
 import reactLogo from "../assets/react.svg";
 import { generateRiddleValue } from "../utils/riddle";
-import { INITIAL_LEVEL, INITIAL_SUB_LEVEL } from "../utils/initial-level";
+import {
+  INITIAL_LEVEL,
+  INITIAL_SUB_LEVEL,
+  saveProgress,
+} from "../utils/initial-level";
+import { SUB_LEVEL_COUNT } from "../const";
 import { Guess } from "./Guess";
 import { Results } from "./Results";
 import { Win } from "./Win";
@@ -10,7 +15,6 @@ import appStyles from "./App.module.scss";
 import "./App.css";
 
 const maxComplexity = 10;
-const subLevelCount = 3;
 
 export function App(): ReactElement {
   const [level, setLevel] = useState<number>(INITIAL_LEVEL);
@@ -23,8 +27,15 @@ export function App(): ReactElement {
   const { guessResults, guess } = useGuessResults(riddleValue);
   const isWin = guessResults[guessResults.length - 1]?.guess === riddleValue;
 
+  function onGuess(guessValue: string) {
+    guess(guessValue);
+    if (guessValue === riddleValue) {
+      saveProgress(level, subLevel);
+    }
+  }
+
   function onNext() {
-    if (subLevel >= subLevelCount) {
+    if (subLevel >= SUB_LEVEL_COUNT) {
       setSubLevel(1);
       setLevel((prev) => prev + 1);
     } else {
@@ -48,7 +59,7 @@ export function App(): ReactElement {
               {isWin ? (
                 <Win tries={guessResults.length} onNext={onNext} />
               ) : (
-                <Guess complexity={complexity} onGuess={guess} />
+                <Guess complexity={complexity} onGuess={onGuess} />
               )}
             </div>
             <Results results={guessResults} />
