@@ -2,6 +2,7 @@ import { ReactElement, useMemo, useState } from "react";
 import { useGuessResults } from "../hooks/guess-results";
 import reactLogo from "../assets/react.svg";
 import { generateRiddleValue } from "../utils/riddle";
+import { SEED_WORDS } from "../utils/seed-words";
 import { Guess } from "./Guess";
 import { Results } from "./Results";
 import { Win } from "./Win";
@@ -10,6 +11,8 @@ import "./App.css";
 
 const maxComplexity = 10;
 const subLevelCount = 3;
+
+console.log(">>", SEED_WORDS);
 
 export function App(): ReactElement {
   const [level, setLevel] = useState<number>(1);
