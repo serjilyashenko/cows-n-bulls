@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import happyBearPath from "../assets/happy-bear.gif";
 import winStyles from "./Win.module.scss";
 
 type TProps = {
@@ -20,7 +21,7 @@ export function Win(props: TProps): ReactElement {
       </div>
       <div className={winStyles.bear_container}>
         <img
-          src="/happy-bear.gif"
+          src={happyBearPath}
           className={winStyles.happy_bear}
           alt="Happy Bear"
         />

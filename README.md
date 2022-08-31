@@ -2,7 +2,7 @@
 
 Ancient game
 
-https://cows-n-bulls.netlify.app/
+Try it here: https://cows-n-bulls.netlify.app/
 
 **Note:** I had the issue to restore user's session (level).
 I have decided to use seed word approach. Every level has

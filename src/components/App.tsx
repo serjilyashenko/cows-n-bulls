@@ -1,6 +1,7 @@
 import { ReactElement, useMemo, useState } from "react";
 import { useGuessResults } from "../hooks/guess-results";
 import reactLogo from "../assets/react.svg";
+import githubLogo from "../assets/github.png";
 import { generateRiddleValue } from "../utils/riddle";
 import {
   INITIAL_LEVEL,
@@ -72,11 +73,18 @@ export function App(): ReactElement {
       </div>
 
       <footer className={appStyles.footer}>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
+        <a
+          href="https://github.com/serjilyashenko/cows-n-bulls"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img src={githubLogo} className="logo" alt="GitHub logo" />
         </a>
         <a href="https://reactjs.org" target="_blank" rel="noreferrer">
           <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
+          <img src="/vite.svg" className="logo" alt="Vite logo" />
         </a>
       </footer>
     </div>
