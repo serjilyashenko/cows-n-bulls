@@ -57,7 +57,11 @@ export function App(): ReactElement {
           <main>
             <div className={appStyles.guess_form_container}>
               {isWin ? (
-                <Win tries={guessResults.length} onNext={onNext} />
+                <Win
+                  riddle={riddleValue}
+                  tries={guessResults.length}
+                  onNext={onNext}
+                />
               ) : (
                 <Guess complexity={complexity} onGuess={onGuess} />
               )}

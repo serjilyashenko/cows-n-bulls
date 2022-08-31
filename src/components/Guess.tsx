@@ -51,7 +51,7 @@ export function Guess(props: PropsType): ReactElement {
         pattern="[0-9]*"
         placeholder={guessPlaceholder}
         ref={guessRef}
-        style={{ width: `calc(42px * ${complexity})` }}
+        style={{ width: `calc(20px * ${complexity})` }}
       />
       <button type="submit" disabled={!isGuessValid}>
         🔎

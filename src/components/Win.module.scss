@@ -2,6 +2,14 @@
   font-size: 2em;
 }
 
+.riddle_value {
+  color: red;
+  animation-name: colors;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  display: inline-block;
+}
+
 .bear_container {
   align-items: center;
   display: flex;
@@ -12,5 +20,29 @@
   .happy_bear {
     width: 100px;
     height: 100px;
+  }
+}
+
+@keyframes colors {
+  0% {
+    color: red;
+    transform: rotate(-15deg);
+  }
+  16% {
+    color: orange;
+  }
+  32% {
+    color: yellow;
+  }
+  50% {
+    color: green;
+    transform: rotate(15deg);
+  }
+  64% {
+    color: blue;
+  }
+  100% {
+    color: violet;
+    transform: rotate(-15deg);
   }
 }

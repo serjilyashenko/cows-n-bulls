@@ -2,17 +2,21 @@ import { ReactElement } from "react";
 import winStyles from "./Win.module.scss";
 
 type TProps = {
+  riddle: string;
   tries: number;
   onNext: () => void;
 };
 
 export function Win(props: TProps): ReactElement {
-  const { tries, onNext } = props;
+  const { riddle, tries, onNext } = props;
 
   return (
     <>
       <div className={winStyles.win}>
-        <div>🎆You WIN ({tries} tries)</div>
+        <div>
+          <span className={winStyles.riddle_value}>🎉{riddle}🎉</span> ({tries}{" "}
+          tries)
+        </div>
       </div>
       <div className={winStyles.bear_container}>
         <img
