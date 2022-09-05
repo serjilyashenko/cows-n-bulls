@@ -36,6 +36,12 @@ export function App(): ReactElement {
     }
   }
 
+  function onReset() {
+    setLevel(1);
+    setSubLevel(1);
+    saveProgress(1, 1);
+  }
+
   function onNext() {
     if (subLevel >= SUB_LEVEL_COUNT) {
       setSubLevel(1);
@@ -64,6 +70,7 @@ export function App(): ReactElement {
                   tries={guessResults.length}
                   isGameWin={isGameWin}
                   onNext={onNext}
+                  onReset={onReset}
                 />
               ) : (
                 <Guess complexity={complexity} onGuess={onGuess} />

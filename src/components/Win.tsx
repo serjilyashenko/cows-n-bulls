@@ -7,10 +7,11 @@ type TProps = {
   tries: number;
   isGameWin: boolean;
   onNext: () => void;
+  onReset: () => void;
 };
 
 export function Win(props: TProps): ReactElement {
-  const { riddle, tries, isGameWin, onNext } = props;
+  const { riddle, tries, isGameWin, onNext, onReset } = props;
 
   return (
     <>
@@ -31,7 +32,7 @@ export function Win(props: TProps): ReactElement {
         {!isGameWin ? (
           <button onClick={onNext}>Next</button>
         ) : (
-          <button className={winStyles.reset_button} onClick={onNext}>
+          <button className={winStyles.reset_button} onClick={onReset}>
             Reset
           </button>
         )}
