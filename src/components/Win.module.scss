@@ -15,11 +15,27 @@
   display: flex;
   font-size: 2em;
   justify-content: center;
+  flex-wrap: nowrap;
   gap: 0.6em;
+  height: 100px;
 
   .happy_bear {
     width: 100px;
     height: 100px;
+  }
+
+  .happy_bear__animation {
+    position: fixed;
+    animation: bear-run 7s linear infinite;
+    z-index: -1;
+  }
+}
+
+.reset_button {
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 0.9;
   }
 }
 
@@ -44,5 +60,14 @@
   100% {
     color: violet;
     transform: rotate(-15deg);
+  }
+}
+
+@keyframes bear-run {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 100%;
   }
 }

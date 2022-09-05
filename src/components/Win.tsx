@@ -5,11 +5,12 @@ import winStyles from "./Win.module.scss";
 type TProps = {
   riddle: string;
   tries: number;
+  isGameWin: boolean;
   onNext: () => void;
 };
 
 export function Win(props: TProps): ReactElement {
-  const { riddle, tries, onNext } = props;
+  const { riddle, tries, isGameWin, onNext } = props;
 
   return (
     <>
@@ -22,10 +23,18 @@ export function Win(props: TProps): ReactElement {
       <div className={winStyles.bear_container}>
         <img
           src={happyBearPath}
-          className={winStyles.happy_bear}
+          className={`${winStyles.happy_bear} ${
+            isGameWin ? winStyles.happy_bear__animation : ""
+          }`}
           alt="Happy Bear"
         />
-        <button onClick={onNext}>Next</button>
+        {!isGameWin ? (
+          <button onClick={onNext}>Next</button>
+        ) : (
+          <button className={winStyles.reset_button} onClick={onNext}>
+            Reset
+          </button>
+        )}
       </div>
     </>
   );

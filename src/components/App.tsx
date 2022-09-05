@@ -8,25 +8,26 @@ import {
   INITIAL_SUB_LEVEL,
   saveProgress,
 } from "../utils/initial-level";
-import { SUB_LEVEL_COUNT } from "../const";
+import { MAX_COMPLEXITY, SUB_LEVEL_COUNT } from "../const";
 import { Guess } from "./Guess";
 import { Results } from "./Results";
+import { FireWorks } from "./FireWorks";
 import { Win } from "./Win";
 import appStyles from "./App.module.scss";
 import "./App.css";
 
-const maxComplexity = 10;
-
 export function App(): ReactElement {
   const [level, setLevel] = useState<number>(INITIAL_LEVEL);
   const [subLevel, setSubLevel] = useState<number>(INITIAL_SUB_LEVEL);
-  const complexity = Math.min(maxComplexity, level + 1);
+  const complexity = level + 1;
   const riddleValue = useMemo<string>(
     () => generateRiddleValue(complexity),
     [complexity, subLevel]
   );
   const { guessResults, guess } = useGuessResults(riddleValue);
-  const isWin = guessResults[guessResults.length - 1]?.guess === riddleValue;
+  const isLevelWin =
+    guessResults[guessResults.length - 1]?.guess === riddleValue;
+  const isGameWin = complexity > MAX_COMPLEXITY + 1;
 
   function onGuess(guessValue: string) {
     guess(guessValue);
@@ -57,10 +58,11 @@ export function App(): ReactElement {
 
           <main>
             <div className={appStyles.guess_form_container}>
-              {isWin ? (
+              {isLevelWin || isGameWin ? (
                 <Win
                   riddle={riddleValue}
                   tries={guessResults.length}
+                  isGameWin={isGameWin}
                   onNext={onNext}
                 />
               ) : (
@@ -87,6 +89,7 @@ export function App(): ReactElement {
           <img src="/vite.svg" className="logo" alt="Vite logo" />
         </a>
       </footer>
+      {isGameWin && <FireWorks />}
     </div>
   );
 }
