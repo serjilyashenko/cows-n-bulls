@@ -16,6 +16,11 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
+@media (prefers-color-scheme: dark) {
+  .logo.github {
+    filter: invert(1);
+  }
+}
 
 @keyframes logo-spin {
   from {

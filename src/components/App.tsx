@@ -87,7 +87,7 @@ export function App(): ReactElement {
           target="_blank"
           rel="noreferrer"
         >
-          <img src={githubLogo} className="logo" alt="GitHub logo" />
+          <img src={githubLogo} className="logo github" alt="GitHub logo" />
         </a>
         <a href="https://reactjs.org" target="_blank" rel="noreferrer">
           <img src={reactLogo} className="logo react" alt="React logo" />
